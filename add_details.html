@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, #8e44ad, #3498db);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #fff;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+        select, input, textarea, button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        button {
+            background: #27ae60;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #2ecc71;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Details Form</h1>
+        <form action="added_to_db.jsp" method="POST">
+            <label for="options">Choose an Option:</label>
+            <select id="options" name="option">
+                <option value="" disabled selected>Select an Option</option>
+                <option value="address" >Address</option>
+                <option value="password">Password</option>
+            </select>
+
+            <!-- Address Section -->
+            <div id="address-section" class="hidden">
+                <label for="address">Enter Address:</label>
+                <input type="text" id="address" name="address" placeholder="Enter your address">
+            </div>
+
+            <!-- Password Section -->
+            <div id="password-section" class="hidden">
+                <label for="id">Enter ID:</label>
+                <input type="text" id="id" name="id" placeholder="Enter your ID">
+                <label for="password">Enter Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password">
+                <label for="note">Add a Note:</label>
+                <textarea id="note" name="note" rows="3" placeholder="Enter your note"></textarea>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        // JavaScript to toggle sections based on dropdown selection
+        const options = document.getElementById('options');
+        const addressSection = document.getElementById('address-section');
+        const passwordSection = document.getElementById('password-section');
+
+        options.addEventListener('change', function () {
+            const selectedValue = this.value;
+
+            // Hide all sections
+            addressSection.classList.add('hidden');
+            passwordSection.classList.add('hidden');
+
+            // Show the relevant section
+            if (selectedValue === 'address') {
+                addressSection.classList.remove('hidden');
+            } else if (selectedValue === 'password') {
+                passwordSection.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
